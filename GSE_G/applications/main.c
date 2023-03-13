@@ -20,6 +20,8 @@ int main(void)
 {
     int count = 1;
 
+    dfs_mount_flash();
+
     lcd_init();
 
     while (count++)

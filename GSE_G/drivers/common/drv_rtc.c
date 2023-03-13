@@ -13,7 +13,7 @@
 #include <sys/time.h>
 #include "drv_common.h"
 
-#ifdef BSP_USING_RTC
+#ifdef BSP_USING_ONCHIP_RTC
 
 //#define DRV_DEBUG
 #define LOG_TAG                         "drv.rtc"
