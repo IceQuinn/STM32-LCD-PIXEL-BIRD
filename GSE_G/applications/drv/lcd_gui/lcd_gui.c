@@ -12,6 +12,13 @@
 #include "lcd_gpio_api.h"
 
 
+/*
+ * 简述显示流程
+ * 1、使用画点接口将需要绘画的内容存入 <lkdGuiBuff>缓冲区中，此时显示屏还不能显示你现在绘画的内容
+ * 2、使用display接口将绘画的内容一次性刷到显示屏上
+ *  */
+
+
 static uint8_t  lkdGuiBuff[GUIYMAX][GUIXMAX/8 + GUIXMAX%8] = {0};
 
 /* 行位获取数组 */
@@ -25,14 +32,38 @@ const static uint8_t colBit[] = {0x80, 0x40, 0x20, 0x10, 0x08, 0x04, 0x02, 0x01}
   */
 void GuiDrawPoint(uint16_t x, uint16_t y, COLOURS color)
 {
-    if(WHITLE == color)//白色
+    if((x < GUIXMAX) && (y < GUIYMAX))
     {
-        lkdGuiBuff[159-y][(159-x) >> 3] &= ~colBit[(159-x) & 0x07];
+        if(WHITLE == color)//白色
+        {
+            lkdGuiBuff[GUIYMAX - 1 - y][(GUIXMAX - 1 - x) >> 3] &= ~colBit[(159-x) & 0x07];
+        }
+        else if(BLACK == color)//黑色
+        {
+            lkdGuiBuff[GUIYMAX - 1 - y][(GUIXMAX - 1 - x) >> 3] |= colBit[(159-x) & 0x07];
+        }
     }
-    else//黑色
+}
+
+//获取像素点颜色
+COLOURS GuiGetPoint(uint16_t x, uint16_t y)
+{
+    if(lkdGuiBuff[GUIYMAX - 1 - y][(GUIXMAX - 1 - x) >> 3] & colBit[(159-x) & 0x07])
     {
-        lkdGuiBuff[159-y][(159-x) >> 3] |= colBit[(159-x) & 0x07];
+        return BLACK;
     }
+    else
+    {
+        return WHITLE;
+    }
+}
+
+/**
+  *@brief 清除屏幕数据缓存
+  */
+void GuiClearAll(void)
+{
+    memset(lkdGuiBuff, WHITLE, sizeof(lkdGuiBuff));
 }
 
 /**

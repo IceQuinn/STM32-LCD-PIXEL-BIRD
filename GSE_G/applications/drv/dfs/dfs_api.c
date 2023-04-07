@@ -8,6 +8,7 @@
  * 2023-03-10     IP155       the first version
  */
 #include "dfs_api.h"
+#include "dfs_fs.h"
 
 void dfs_mount_flash(void)
 {
