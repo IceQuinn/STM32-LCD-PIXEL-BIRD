@@ -11,7 +11,9 @@
 #define APPLICATIONS_APP_PIXEL_BIRD_PIX_BIRD_BKG_H_
 
 
-void DrawPipes(void);
+void DrawPipes(void);   //创建一组管道
+
+void MovePipes(void);   //移动并补充管道
 
 
 #endif /* APPLICATIONS_APP_PIXEL_BIRD_PIX_BIRD_BKG_H_ */

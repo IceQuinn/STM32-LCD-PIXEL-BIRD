@@ -20,4 +20,6 @@ typedef enum COLOUR
 
 void GuiDrawPoint(uint16_t x, uint16_t y, COLOURS color);
 
+void GuiClearAll(void);
+
 #endif /* APPLICATIONS_DRV_LCD_GUI_LCD_GUI_H_ */

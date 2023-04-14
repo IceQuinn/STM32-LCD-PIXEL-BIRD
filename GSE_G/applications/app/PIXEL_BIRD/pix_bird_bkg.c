@@ -7,6 +7,7 @@
  * Date           Author       Notes
  * 2023-04-06     IP155       the first version
  */
+#include <stdlib.h>
 #include "pix_bird_bkg.h"
 
 #include "lcd_gui.h"
@@ -19,7 +20,16 @@
 #define PIPE_WIDTH 10
 
 // 定义每个管道之间的空隙大小
-#define PIPE_GAP 25
+#define PIPE_GAP 30
+
+// 屏幕中管道个数
+#define PIPE_NUM    10
+struct pipe
+{
+    uint16_t pipe_x;
+    uint16_t gap_y;
+};
+struct pipe pips[PIPE_NUM] = {0};
 
 // 绘制一个管道
 void DrawPipe(unsigned int x, unsigned int gap_y)
@@ -53,6 +63,8 @@ void DrawPipes(void)
     {
         gap_y = rand() % (160 - PIPE_HEIGHT - 2 * PIPE_GAP) + PIPE_GAP; // 随机生成上下管道之间的间隙
         DrawPipe(x, gap_y); // 绘制管道
+        pips[0].pipe_x = pips;
+        pips[0].gap_y = gap_y;
         x += PIPE_WIDTH + PIPE_GAP; // 计算下一个管道的起始横坐标
     }
 }
@@ -60,6 +72,7 @@ void DrawPipes(void)
 // 定义一个函数来移动这组管道
 void MovePipes(void)
 {
+    static uint8_t move_idx = 0;
     for (uint16_t m_x=0; m_x < GUIXMAX-1; ++m_x)
     {
         for (uint16_t m_y=0; m_y < GUIYMAX; ++m_y)
@@ -67,5 +80,14 @@ void MovePipes(void)
             uint8_t color = GuiGetPoint(m_x+1, m_y);    //获取下一列像素
             GuiDrawPoint(m_x, m_y, color);              //补到本列像素
         }
+    }
+
+    move_idx++;
+    if(0 == (move_idx % PIPE_GAP))
+    {
+        move_idx = 0;
+        uint32_t gap_y = 0;
+        gap_y = rand() % (160 - PIPE_HEIGHT - 2 * PIPE_GAP) + PIPE_GAP; // 随机生成上下管道之间的间隙
+        DrawPipe(GUIXMAX-1-PIPE_GAP, gap_y); // 绘制管道
     }
 }
