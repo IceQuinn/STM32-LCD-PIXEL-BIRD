@@ -17,6 +17,7 @@
 #include "lcd_gpio.h"
 #include "pixel_bird.h"
 #include "user_common.h"
+#include "btn_chk.h"
 
 /* 线程结构体 */
 typedef struct
@@ -31,6 +32,7 @@ typedef struct
 
 const user_thread_table_typedef user_thread_table[] = {
         {"px_bird",     pixel_bird_thread,  RT_NULL,    1024,   17, 15},    /* 计量线程 */
+        {"btn",         Btn_Thread,         RT_NULL,    1024,   20, 15},    /* 计量线程 */
 };
 
 void user_thread_init(void)

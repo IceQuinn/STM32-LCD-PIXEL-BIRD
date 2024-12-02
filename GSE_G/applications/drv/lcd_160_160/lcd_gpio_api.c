@@ -33,6 +33,9 @@ void lcd_gpio_init(void)
     rt_pin_mode(LCD_RST, PIN_MODE_OUTPUT);  //复位
     rt_pin_mode(LCD_BLK, PIN_MODE_OUTPUT);  //背光
 
+
+    rt_pin_write(LCD_BLK, PIN_LOW);
+
     lcd_reset();
 }
 
