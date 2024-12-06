@@ -8,13 +8,18 @@
  * 2023-04-06     IP155       the first version
  */
 #include <time.h>
+#include <drv_common.h>
 #include "pixel_bird.h"
 
 #include "lcd_gpio.h"
 #include "lcd_gui.h"
 #include "pix_bird_bkg.h"
 
-#define MOVE_CNT    4
+#define MOVE_CNT    2
+
+
+
+
 
 
 void pixel_bird_thread(void *parameter)
@@ -34,7 +39,7 @@ void pixel_bird_thread(void *parameter)
     {
         GuiUpdateDisplayAll();
 
-        rt_thread_mdelay(10);
+        rt_thread_mdelay(5);
 
         pixb_thread_cnt++;
 

@@ -45,7 +45,7 @@ struct Btn_Cfg_Str Btn_Cfg[] =
     {BTN_ENTER, RESET, 2, {0}, RT_NULL},
 };
 
-
+extern void btn_clik_up_cb(void);
 void btn_clik_cb(uint16_t pin)
 {
     if (BTN_ESC == pin)
@@ -54,6 +54,7 @@ void btn_clik_cb(uint16_t pin)
     }
     else if(BTN_UP == pin)
     {
+        btn_clik_up_cb();
         rt_kprintf("Button Clik:BTN_UP\n");
     }
     else if(BTN_DOWN == pin)

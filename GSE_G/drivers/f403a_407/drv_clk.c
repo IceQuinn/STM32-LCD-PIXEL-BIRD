@@ -30,7 +30,7 @@ void system_clock_config(int target_freq_Mhz)
 
 #ifdef SOC_SERIES_AT32F403A
     /* config pll clock resource */
-    crm_pll_config(CRM_PLL_SOURCE_HEXT_DIV, CRM_PLL_MULT_40, CRM_PLL_OUTPUT_RANGE_GT72MHZ);
+    crm_pll_config(CRM_PLL_SOURCE_HEXT, CRM_PLL_MULT_20, CRM_PLL_OUTPUT_RANGE_GT72MHZ);
 #endif
 #ifdef SOC_SERIES_AT32F407
     /* config pll clock resource */
@@ -38,7 +38,7 @@ void system_clock_config(int target_freq_Mhz)
 #endif
 
     /* config hext division */
-    crm_hext_clock_div_set(CRM_HEXT_DIV_2);
+//    crm_hext_clock_div_set(CRM_HEXT_DIV_2);
 
     /* enable pll */
     crm_clock_source_enable(CRM_CLOCK_SOURCE_PLL, TRUE);

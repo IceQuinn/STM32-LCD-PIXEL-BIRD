@@ -12,4 +12,6 @@
 
 void DrawBird(void);
 
+void DrawFlyBird(void);
+
 #endif /* APPLICATIONS_APP_PIXEL_BIRD_PIX_BIRD_BIRD_H_ */

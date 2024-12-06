@@ -31,10 +31,10 @@ void lcd_gpio_init(void)
     rt_pin_mode(LCD_A0, PIN_MODE_OUTPUT);   //指令数据
 //    rt_pin_mode(LCD_CS, PIN_MODE_OUTPUT);   //片选
     rt_pin_mode(LCD_RST, PIN_MODE_OUTPUT);  //复位
-    rt_pin_mode(LCD_BLK, PIN_MODE_OUTPUT);  //背光
+//    rt_pin_mode(LCD_BLK, PIN_MODE_OUTPUT);  //背光
 
 
-    rt_pin_write(LCD_BLK, PIN_LOW);
+//    rt_pin_write(LCD_BLK, PIN_LOW);
 
     lcd_reset();
 }

@@ -96,6 +96,24 @@ void DrawFlyBird(void)
     y -= pixel_bird_stas.speed;
 }
 
+
+void btn_clik_esc_cb(void)
+{
+
+}
+void btn_clik_up_cb(void)
+{
+    pixel_bird_stas.speed = 8;
+}
+void btn_clik_down_cb(void)
+{
+
+}
+void btn_clik_entry_cb(void)
+{
+
+}
+
 void change_speed(void)
 {
     pixel_bird_stas.speed = 8;
